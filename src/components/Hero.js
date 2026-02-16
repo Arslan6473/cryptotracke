@@ -65,11 +65,11 @@ const Hero = () => {
     };
 
     const floatingIcons = [
-        { icon: TrendingUp, color: 'text-green-500', bg: 'bg-green-50', delay: 0, position: 'top-10 left-5 md:left-10' },
+        { icon: TrendingUp, color: 'text-green-500', bg: 'bg-green-50', delay: 0, position: 'top-12 left-5 md:left-10' },
         { icon: BarChart3, color: 'text-blue-500', bg: 'bg-blue-50', delay: 0.5, position: 'top-32 right-5 md:-right-10' },
-        { icon: Globe, color: 'text-purple-500', bg: 'bg-purple-50', delay: 1, position: 'bottom-44 left-5 md:left-20' },
+        { icon: Globe, color: 'text-purple-500', bg: 'bg-purple-50', delay: 1, position: 'bottom-40 left-5 md:left-8' },
         { icon: DollarSign, color: 'text-yellow-500', bg: 'bg-yellow-50', delay: 1.5, position: 'bottom-10 right-5 md:right-16' },
-        { icon: Activity, color: 'text-pink-500', bg: 'bg-pink-50', delay: 2, position: 'top-1/2 right-0 md:right-5' },
+        { icon: Activity, color: 'text-pink-500', bg: 'bg-pink-50', delay: 2, position: 'bottom-52 right-0 md:right-5' },
     ];
 
     const features = [
