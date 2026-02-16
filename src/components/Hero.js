@@ -9,6 +9,10 @@ const Hero = () => {
     const router = useRouter();
     const [search, setSearch] = useState('');
     const [stats, setStats] = useState({ users: 0, coins: 0, volume: 0 });
+    const [windowSize, setWindowSize] = useState({
+        width: undefined,
+        height: undefined
+    });
 
     // Animated counter effect
     useEffect(() => {
@@ -35,7 +39,24 @@ const Hero = () => {
 
         return () => clearInterval(timer);
     }, []);
+    useEffect(() => {
+        // This code only runs on the client
+        setWindowSize({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
 
+        const handleResize = () => {
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight
+            });
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     const handleSearch = (e) => {
         e.preventDefault();
         if (search.trim()) {
@@ -71,7 +92,7 @@ const Hero = () => {
                 <motion.div
                     key={i}
                     className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
-                    initial={{ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight }}
+                    initial={{ x: Math.random() * windowSize.width, y: Math.random() * windowSize.height }}
                     animate={{
                         y: [0, -30, 0],
                         opacity: [0.2, 0.8, 0.2],
@@ -187,30 +208,7 @@ const Hero = () => {
                 </motion.div>
 
 
-                {/* Features */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.2 }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
-                >
-                    {features.map((feature, index) => {
-                        const Icon = feature.icon;
-                        return (
-                            <motion.div
-                                key={index}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                                className="p-6 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all"
-                            >
-                                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                                    <Icon className="w-6 h-6 text-blue-600" />
-                                </div>
-                                <h3 className="font-bold text-gray-900 mb-2">{feature.title}</h3>
-                                <p className="text-sm text-gray-600">{feature.desc}</p>
-                            </motion.div>
-                        );
-                    })}
-                </motion.div>
+
             </div>
         </section>
     );
