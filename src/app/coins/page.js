@@ -1,10 +1,12 @@
-
 'use client';
+
+export const dynamic = "force-dynamic";
+
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search } from 'lucide-react';
 import CoinCard from '@/components/CoinCard';
-import { motion } from 'framer-motion';
+
 
 const CoinsPage = () => {
     const searchParams = useSearchParams();
@@ -19,15 +21,11 @@ const CoinsPage = () => {
 
     useEffect(() => {
         fetchCoins();
-    }, [page, search]); // Re-fetch when page or search changes (debounced search ideally)
+    }, [page, search]);
 
     const fetchCoins = async () => {
         setLoading(true);
         try {
-            const query = search ? `&ids=${search}` : ''; // Basic search by ID for demo, real search needs specific API endpoint or client filtering
-            // CoinGecko /search endpoint is for searching, /coins/markets is for listing.
-            // We will fetch markets and filter client side if search is small, or use search endpoint?
-            // For this demo, let's just fetch markets and filter client side for better experience with limited API
 
             const res = await fetch(
                 `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=${page}&sparkline=false&price_change_percentage=24h`
@@ -35,7 +33,7 @@ const CoinsPage = () => {
             const data = await res.json();
 
             if (search) {
-                // Client-side filter for demo purposes since /markets doesn't support fuzzy search well
+
                 const filtered = data.filter(c =>
                     c.name.toLowerCase().includes(search.toLowerCase()) ||
                     c.symbol.toLowerCase().includes(search.toLowerCase())
@@ -44,7 +42,7 @@ const CoinsPage = () => {
             } else {
                 setCoins(data);
             }
-            setTotalPages(10); // Mock total pages since API doesn't return header in free tier easily
+            setTotalPages(10);
         } catch (error) {
             console.error("Error fetching coins:", error);
         } finally {
@@ -62,7 +60,7 @@ const CoinsPage = () => {
     return (
         <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div className="mb-12 text-center">
-                <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-purple-600 mb-6">
                     Market Overview
                 </h1>
                 <form onSubmit={handleSearchSubmit} className="max-w-xl mx-auto relative group">
