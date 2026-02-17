@@ -1,5 +1,25 @@
 
 import { Users, Target, Shield } from 'lucide-react';
+import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/constants';
+
+export const metadata = {
+    title: 'About Us',
+    description: `Learn about ${SITE_NAME} - your trusted source for real-time cryptocurrency data and insights. We democratize access to professional-grade crypto market data.`,
+    openGraph: {
+        title: `About Us | ${SITE_NAME}`,
+        description: `Learn about ${SITE_NAME} and our mission to provide accurate, real-time cryptocurrency data to empower your investment decisions.`,
+        url: `${SITE_URL}/about`,
+        type: 'website',
+        images: [OG_IMAGE],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: `About Us | ${SITE_NAME}`,
+        description: `Learn about ${SITE_NAME} and our mission to provide accurate, real-time cryptocurrency data.`,
+        images: [OG_IMAGE],
+    },
+};
+
 
 export default function AboutPage() {
     return (
@@ -52,7 +72,7 @@ export default function AboutPage() {
                 </p>
                 <a
                     href="/coins"
-                    className="inline-block px-8 py-3 bg-linear-to-r from-blue-600 to-purple-600 rounded-full font-bold hover:opacity-90 transition-opacity"
+                    className="inline-block px-8 py-3 bg-linear-to-r from-blue-600 to-purple-600 rounded-full text-white font-bold hover:opacity-90 transition-opacity"
                 >
                     Explore Market
                 </a>

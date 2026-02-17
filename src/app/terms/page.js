@@ -1,6 +1,21 @@
+import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/constants';
+
 export const metadata = {
-    title: 'Terms of Service | CryptoTracke',
-    description: 'Terms of Service for CryptoTracke - Read our terms and conditions.',
+    title: 'Terms of Service',
+    description: `Terms of Service for ${SITE_NAME} - Read our terms and conditions. Understand your rights and responsibilities when using our platform.`,
+    openGraph: {
+        title: `Terms of Service | ${SITE_NAME}`,
+        description: 'Read our terms and conditions for using the platform.',
+        url: `${SITE_URL}/terms`,
+        type: 'website',
+        images: [OG_IMAGE],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: `Terms of Service | ${SITE_NAME}`,
+        description: 'Read our terms and conditions for using the platform.',
+        images: [OG_IMAGE],
+    },
 };
 
 export default function TermsOfService() {

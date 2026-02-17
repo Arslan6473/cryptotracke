@@ -3,6 +3,25 @@ import Link from 'next/link';
 import dbConnect from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 import Image from 'next/image';
+import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/constants';
+
+export const metadata = {
+    title: 'Blog',
+    description: `Stay updated with the latest crypto trends, market analysis, and educational content from ${SITE_NAME}. Expert insights on cryptocurrency and blockchain technology.`,
+    openGraph: {
+        title: `Blog | ${SITE_NAME}`,
+        description: 'Latest crypto insights, market analysis, and educational content from the cryptocurrency world.',
+        url: `${SITE_URL}/blog`,
+        type: 'website',
+        images: [OG_IMAGE],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: `Blog | ${SITE_NAME}`,
+        description: 'Latest crypto insights, market analysis, and educational content.',
+        images: [OG_IMAGE],
+    },
+};
 
 async function getBlogs() {
     await dbConnect();

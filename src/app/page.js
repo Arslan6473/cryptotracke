@@ -2,12 +2,31 @@
 import Hero from '@/components/Hero';
 import CoinCard from '@/components/CoinCard';
 import Link from 'next/link';
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL, OG_IMAGE } from '@/lib/constants';
+
+export const metadata = {
+  title: 'Home | Real-time Crypto Insights',
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    title: `${SITE_NAME} | Real-time Crypto Insights`,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    type: 'website',
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SITE_NAME} | Real-time Crypto Insights`,
+    description: SITE_DESCRIPTION,
+    images: [OG_IMAGE],
+  },
+};
 
 async function getTopCoins() {
   try {
     const res = await fetch(
       'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h',
-      { next: { revalidate: 60 } } // Revalidate every 60 seconds
+      { next: { revalidate: 60 } }
     );
 
     if (!res.ok) {
@@ -75,6 +94,24 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: SITE_NAME,
+            url: SITE_URL,
+            logo: `${SITE_URL}/logo.png`,
+            description: SITE_DESCRIPTION,
+            sameAs: [
+              // Add your social media profiles here
+            ],
+          }),
+        }}
+      />
     </div>
   );
 }

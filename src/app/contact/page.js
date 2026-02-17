@@ -96,7 +96,7 @@ export default function ContactPage() {
                                 disabled={status === 'sending' || status === 'sent'}
                                 className={`w-full py-4 rounded-xl font-bold flex items-center justify-center transition-all ${status === 'sent'
                                     ? 'bg-green-600 text-white'
-                                    : 'bg-linear-to-r from-blue-600 to-purple-600 hover:opacity-90'
+                                    : 'bg-linear-to-r from-blue-600 to-purple-600 text-white hover:opacity-90'
                                     }`}
                             >
                                 {status === 'sending' ? (

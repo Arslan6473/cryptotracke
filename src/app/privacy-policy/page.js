@@ -1,6 +1,21 @@
+import { SITE_NAME, SITE_URL, OG_IMAGE } from '@/lib/constants';
+
 export const metadata = {
-    title: 'Privacy Policy | CryptoTracke',
-    description: 'Privacy Policy for CryptoTracke - Learn how we collect, use, and protect your data.',
+    title: 'Privacy Policy',
+    description: `Privacy Policy for ${SITE_NAME} - Learn how we collect, use, and protect your data. Understand your rights and our commitment to data security.`,
+    openGraph: {
+        title: `Privacy Policy | ${SITE_NAME}`,
+        description: 'Learn how we collect, use, and protect your data.',
+        url: `${SITE_URL}/privacy-policy`,
+        type: 'website',
+        images: [OG_IMAGE],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: `Privacy Policy | ${SITE_NAME}`,
+        description: 'Learn how we collect, use, and protect your data.',
+        images: [OG_IMAGE],
+    },
 };
 
 export default function PrivacyPolicy() {
