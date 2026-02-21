@@ -24,15 +24,18 @@ export async function generateMetadata({ params }) {
         };
     }
 
-    // Extract plain text from HTML content for description
+    // Extract plain text from HTML content for description as fallback
     const plainText = blog.content.replace(/<[^>]*>/g, '').substring(0, 160);
 
+    const title = blog.metaTitle || `${blog.title} | CryptoTracke Blog`;
+    const description = blog.metaDescription || plainText || 'Read our latest insights on cryptocurrency and blockchain.';
+
     return {
-        title: `${blog.title} | CryptoTracke Blog`,
-        description: plainText || 'Read our latest insights on cryptocurrency and blockchain.',
+        title: title,
+        description: description,
         openGraph: {
-            title: blog.title,
-            description: plainText,
+            title: title,
+            description: description,
             type: 'article',
             publishedTime: blog.createdAt,
             authors: ['CryptoTracke Team'],
@@ -40,8 +43,8 @@ export async function generateMetadata({ params }) {
         },
         twitter: {
             card: 'summary_large_image',
-            title: blog.title,
-            description: plainText,
+            title: title,
+            description: description,
             images: blog.coverImage ? [blog.coverImage] : [],
         },
     };
@@ -54,6 +57,9 @@ export default async function BlogPost({ params }) {
     if (!blog) {
         notFound();
     }
+
+    // Extract plain text for JSON-LD description fallback
+    const plainText = blog.content.replace(/<[^>]*>/g, '').substring(0, 160);
 
     // JSON-LD Schema for Article
     const jsonLd = {
@@ -75,7 +81,7 @@ export default async function BlogPost({ params }) {
                 url: 'https://yourdomain.com/logo.png', // Update with actual logo URL
             },
         },
-        description: blog.content.replace(/<[^>]*>/g, '').substring(0, 160),
+        description: blog.metaDescription || plainText,
     };
 
     return (

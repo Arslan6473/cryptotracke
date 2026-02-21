@@ -11,6 +11,8 @@ import { useRouter } from 'next/navigation';
 export default function AdminDashboard() {
     const [title, setTitle] = useState('');
     const [slug, setSlug] = useState('');
+    const [metaTitle, setMetaTitle] = useState('');
+    const [metaDescription, setMetaDescription] = useState('');
     const [coverImage, setCoverImage] = useState('');
     const [uploading, setUploading] = useState(false);
 
@@ -24,14 +26,18 @@ export default function AdminDashboard() {
 
     const editor = useEditor({
         extensions: [
-            StarterKit,
+            StarterKit.configure({
+                heading: {
+                    levels: [1, 2, 3, 4, 5, 6],
+                },
+            }),
             ImageExtension,
             LinkExtension,
         ],
         content: '<p>Start writing your blog post...</p>',
         editorProps: {
             attributes: {
-                class: 'prose prose-invert max-w-none focus:outline-none min-h-[300px]',
+                class: 'prose max-w-none focus:outline-none min-h-[300px]',
             },
         },
         immediatelyRender: false,
@@ -115,6 +121,8 @@ export default function AdminDashboard() {
                     slug,
                     content: editor.getHTML(),
                     coverImage,
+                    metaTitle,
+                    metaDescription,
                 }),
             });
 
@@ -157,6 +165,8 @@ export default function AdminDashboard() {
         setEditingId(blog._id);
         setTitle(blog.title);
         setSlug(blog.slug);
+        setMetaTitle(blog.metaTitle || '');
+        setMetaDescription(blog.metaDescription || '');
         setCoverImage(blog.coverImage || '');
         editor?.commands.setContent(blog.content);
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -167,6 +177,8 @@ export default function AdminDashboard() {
         setEditingId(null);
         setTitle('');
         setSlug('');
+        setMetaTitle('');
+        setMetaDescription('');
         setCoverImage('');
         editor?.commands.setContent('<p>Start writing your blog post...</p>');
     };
@@ -454,6 +466,30 @@ export default function AdminDashboard() {
                                             )}
                                         </div>
                                     )}
+                                </div>
+                            </div>
+
+                            <div className="mt-8 space-y-4">
+                                <h3 className="font-bold text-gray-900">SEO Settings</h3>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Meta Title</label>
+                                    <input
+                                        type="text"
+                                        placeholder="SEO Title"
+                                        value={metaTitle}
+                                        onChange={(e) => setMetaTitle(e.target.value)}
+                                        className="w-full p-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Meta Description</label>
+                                    <textarea
+                                        placeholder="SEO Description"
+                                        value={metaDescription}
+                                        onChange={(e) => setMetaDescription(e.target.value)}
+                                        rows={3}
+                                        className="w-full p-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm resize-none"
+                                    />
                                 </div>
                             </div>
                         </div>

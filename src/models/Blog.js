@@ -19,6 +19,14 @@ const BlogSchema = new mongoose.Schema({
     coverImage: {
         type: String,
     },
+    metaTitle: {
+        type: String,
+        maxlength: [100, 'Meta title cannot be more than 100 characters'],
+    },
+    metaDescription: {
+        type: String,
+        maxlength: [200, 'Meta description cannot be more than 200 characters'],
+    },
     createdAt: {
         type: Date,
         default: Date.now,

@@ -160,9 +160,10 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed"
                 >
-                    Real-time prices, advanced charts, and market insights at your fingertips.
+                    CryptoTracke is a free crypto coin tracker online that lets you track portfolios, wallets, and exchanges easily. View live charts, monitor multiple cryptocurrencies, and manage all your coins in one simple crypto chart tracker.
+
                     <br className="hidden md:block" />
-                    Experience the future of cryptocurrency tracking.
+                    Perfect for beginners and small investors seeking real time market insights
                 </motion.p>
 
                 {/* Search Bar */}

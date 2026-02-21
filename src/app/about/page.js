@@ -29,7 +29,7 @@ export default function AboutPage() {
                     About CryptoTracke
                 </h1>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                    We are dedicated to providing the most accurate, real-time cryptocurrency data and insights to empower your investment decisions.
+                    CryptoTracke is a simple and easy-to-use platform to track all your cryptocurrencies in one place. With our free crypto coin tracker, live charts, and wallet management tools, you can monitor your portfolios and stay updated with real-time market prices. We help beginners and small investors manage multiple coins easily and make smarter decisions.
                 </p>
             </div>
 
@@ -40,7 +40,7 @@ export default function AboutPage() {
                     </div>
                     <h3 className="text-xl font-bold text-gray-900">Our Mission</h3>
                     <p className="text-gray-600">
-                        To democratize access to professional-grade crypto market data and make it accessible to everyone, from beginners to experts.
+                        At CryptoTracke, our mission is to make cryptocurrency tracking simple and accessible for everyone. We aim to help users monitor their portfolios, wallets, and live crypto prices easily
                     </p>
                 </div>
 
@@ -50,7 +50,7 @@ export default function AboutPage() {
                     </div>
                     <h3 className="text-xl font-bold text-gray-900">Our Community</h3>
                     <p className="text-gray-600">
-                        Building a global community of crypto enthusiasts who share knowledge, insights, and opportunities in the decentralized economy.
+                        Join the CryptoTracke community to connect with crypto enthusiasts, share insights, track portfolios, and stay updated on live market trends.
                     </p>
                 </div>
 
